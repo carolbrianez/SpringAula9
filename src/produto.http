@@ -1,0 +1,143 @@
+### listando produtos
+GET http://localhost:8080/produtos
+Accept: application/json
+
+### cadastrando teclado
+POST http://localhost:8080/produtos
+Content-Type: application/json
+
+{
+  "nome": "teclado",
+  "preco": 100,
+  "categoria": {
+    "id": 1
+  }
+}
+
+### cadastrando produto com foto
+POST http://localhost:8080/produtos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc5MTU4ODUxMSwiZXhwIjoxNzkxNjc0OTExfQ.VXrngUxHSSbE1YrmjWlAuLrO3qChQTxzHh_jRwoKsm0
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="produto"; filename="produto.json"
+Content-Type: application/json
+
+{
+  "nome": "Mouse",
+  "preco": 10,
+  "categoria": {
+    "id": 1
+  }
+}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="foto"; filename="mouse.png"
+Content-Type: image/png
+
+< C:\Users\aluno\Downloads\mouse.png
+--WebAppBoundary--
+
+### cadastrando produto com foto e manual pdf
+POST http://localhost:8080/produtos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc5MTU5MDMxMCwiZXhwIjoxNzkxNjc2NzEwfQ.3M8QukK7ZyaV61oj3Cs2ISaB_XgwqJkMMln93YvL0yw
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="produto"; filename="produto.json"
+Content-Type: application/json
+
+{
+  "nome": "monitor 4k",
+  "preco": 2200.00,
+  "categoria": {
+    "id": 1
+  }
+}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="foto"; filename="tv.png"
+Content-Type: image/png
+
+< C:\Users\aluno\Downloads\tv.png
+--WebAppBoundary
+Content-Disposition: form-data; name="manual"; filename="manual.pdf"
+Content-Type: application/pdf
+
+< C:\Users\aluno\Downloads\manual_tv.pdf
+--WebAppBoundary--
+
+### alterando o produto de id 1
+PUT http://localhost:8080/produtos/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc5MTU4OTQ5NSwiZXhwIjoxNzkxNjc1ODk1fQ.Y9zMl4FUVXY28FPkj18gq4p6G_i3JvXS4EQ1qOkBYm8
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="produto"; filename="produto.json"
+Content-Type: application/json
+
+{
+  "nome": "teclado novo",
+  "preco": 120,
+  "categoria": {
+    "id": 1
+  }
+}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="foto"; filename="teclado.png"
+Content-Type: image/png
+
+< C:\Users\aluno\Downloads\teclado.png
+--WebAppBoundary--
+
+### alterando produto com foto e manual pdf
+PUT http://localhost:8080/produtos/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc5MTU5MTAyMCwiZXhwIjoxNzkxNjc3NDIwfQ.OTNDXnK1wh2kaQxlaF9XbCjJowPyyEi_UunmU4RxyGg
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="produto"; filename="produto.json"
+Content-Type: application/json
+
+{
+  "nome": "Monitor 4k LG",
+  "preco": 2500.00,
+  "categoria": {
+    "id": 1
+  }
+}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="foto"; filename="monitor.jpg"
+Content-Type: image/jpeg
+
+< C:\Users\aluno\Downloads\tv.png
+--WebAppBoundary
+Content-Disposition: form-data; name="manual"; filename="manual_tv.pdf"
+Content-Type: application/pdf
+
+< C:\Users\aluno\Downloads\manual_tv.pdf
+--WebAppBoundary--
+
+### excluindo o produto de id 2
+DELETE http://localhost:8080/produtos/2
+
+
+### filtro nome
+GET http://localhost:8080/produtos/filtro-nome?nome=tec
+
+### filtro preco
+GET http://localhost:8080/produtos/filtro-preco?valor=500
+
+### listando produto pelo id
+GET http://localhost:8080/produtos/1
+
+### teste validação de cadastro
+POST http://localhost:8080/produtos
+Content-Type: application/json
+
+{
+  "nome": "",
+  "preco": -100
+}
